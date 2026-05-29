@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+
+# Local preview screenshots
+官網草稿/preview*.png
+
+# Local runtime/cache files
+.env
+node_modules/
