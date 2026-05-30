@@ -589,78 +589,6 @@ h3 {
   padding-top: 42px;
 }
 
-.work-showcase {
-  position: relative;
-  height: 520px;
-  margin-bottom: 26px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(251, 249, 255, 0.96) 86%),
-    #f1ebfb;
-  box-shadow: 0 22px 60px rgba(72, 42, 116, 0.12);
-}
-
-.showcase-panel {
-  position: absolute;
-  width: 36%;
-  height: 88%;
-  object-fit: cover;
-  object-position: top center;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 16px;
-  box-shadow: 0 28px 72px rgba(72, 42, 116, 0.22);
-}
-
-.panel-dark {
-  top: 42px;
-  left: -7%;
-  transform: rotate(-7deg);
-  z-index: 1;
-}
-
-.panel-center {
-  top: 50px;
-  left: 27%;
-  width: 42%;
-  z-index: 3;
-}
-
-.panel-light {
-  top: 38px;
-  right: -4%;
-  transform: rotate(7deg);
-  z-index: 2;
-}
-
-.panel-sales {
-  top: 108px;
-  left: 13%;
-  width: 30%;
-  height: 74%;
-  opacity: 0.9;
-  transform: rotate(-1deg);
-  z-index: 0;
-}
-
-.showcase-label {
-  position: absolute;
-  bottom: 34px;
-  left: 42px;
-  z-index: 4;
-}
-
-.showcase-label span {
-  display: inline-flex;
-  padding: 14px 22px;
-  border-radius: 999px;
-  color: var(--green-dark);
-  background: rgba(242, 232, 255, 0.94);
-  font-size: 21px;
-  font-weight: 900;
-}
-
 .work-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -986,9 +914,6 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .work-showcase {
-    height: 420px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1083,50 +1008,6 @@ textarea {
   .work-grid,
   .trust-band {
     grid-template-columns: 1fr;
-  }
-
-  .work-showcase {
-    height: 360px;
-    margin-bottom: 20px;
-  }
-
-  .showcase-panel {
-    width: 62%;
-    height: 78%;
-    border-radius: 14px;
-  }
-
-  .panel-dark {
-    top: 42px;
-    left: -30%;
-  }
-
-  .panel-center {
-    top: 48px;
-    left: 19%;
-    width: 68%;
-  }
-
-  .panel-light {
-    top: 48px;
-    right: -34%;
-  }
-
-  .panel-sales {
-    top: 106px;
-    left: 2%;
-    width: 52%;
-    height: 62%;
-  }
-
-  .showcase-label {
-    bottom: 24px;
-    left: 22px;
-  }
-
-  .showcase-label span {
-    padding: 11px 18px;
-    font-size: 18px;
   }
 
   .trust-band div {
