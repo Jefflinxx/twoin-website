@@ -591,7 +591,7 @@ h3 {
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -606,7 +606,7 @@ h3 {
 }
 
 .work-media {
-  height: clamp(270px, 24vw, 340px);
+  height: clamp(250px, 19vw, 318px);
   overflow: hidden;
   background: #e8e0f3;
 }
@@ -626,10 +626,10 @@ h3 {
 
 .work-meta {
   display: grid;
-  grid-template-rows: auto minmax(58px, auto) 1fr;
+  grid-template-rows: auto minmax(62px, auto) 1fr;
   align-content: start;
-  min-height: 188px;
-  padding: 22px;
+  min-height: 194px;
+  padding: 20px;
 }
 
 .work-meta span {
@@ -648,12 +648,14 @@ h3 {
   display: flex;
   align-items: start;
   margin-bottom: 8px;
+  font-size: 20px;
 }
 
 .work-meta p {
   margin: 0;
   color: var(--muted);
   max-width: 24em;
+  font-size: 15px;
 }
 
 .case-grid {
