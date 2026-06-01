@@ -39,7 +39,7 @@ a {
 }
 
 .site-header {
-  position: sticky;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -48,50 +48,69 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  min-height: 72px;
-  padding: 0 48px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 20px;
+  min-height: 58px;
+  padding: 0 max(24px, calc((100vw - 1200px) / 2));
+  border-bottom: 0;
   color: var(--white);
-  background: rgba(7, 20, 36, 0.86);
-  backdrop-filter: blur(18px);
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 7px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0;
 }
 
 .brand-mark {
   display: inline-grid;
-  width: 42px;
-  height: 42px;
+  width: 27px;
+  height: 27px;
   place-items: center;
-  border-radius: 8px;
+  border-radius: 0;
   color: var(--white);
-  background: rgba(0, 0, 0, 0.74);
+  background: transparent;
   font-size: 13px;
 }
 
 .brand-mark img {
-  width: 31px;
-  height: 31px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
 .main-nav {
+  position: absolute;
+  left: 50%;
   display: flex;
-  gap: 26px;
+  gap: 24px;
   color: rgba(255, 255, 255, 0.72);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 700;
+  transform: translateX(-50%);
 }
 
 .main-nav a:hover {
   color: var(--white);
+}
+
+.header-cta {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: 0 17px;
+  border-radius: 999px;
+  color: #0b2239;
+  background: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 0 8px 22px rgba(255, 171, 46, 0.32);
 }
 
 .section-band,
@@ -104,17 +123,14 @@ a {
   position: relative;
   width: 100%;
   max-width: none;
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(520px, 1.14fr);
-  gap: 48px;
-  align-items: center;
-  min-height: 690px;
+  display: block;
+  min-height: 486px;
   margin-top: 0;
-  padding: 72px max(24px, calc((100vw - 1200px) / 2)) 68px;
+  padding: 58px max(24px, calc((100vw - 1200px) / 2)) 28px;
   border-radius: 0;
   color: var(--white);
   background:
-    linear-gradient(90deg, rgba(2, 10, 24, 0.94) 0%, rgba(10, 45, 74, 0.8) 42%, rgba(255, 171, 46, 0.06) 100%),
+    linear-gradient(90deg, rgba(2, 10, 24, 0.48) 0%, rgba(6, 62, 92, 0.22) 44%, rgba(255, 171, 46, 0.12) 100%),
     url("design/hero-gradient.jpg") center / cover;
   box-shadow: none;
   overflow: hidden;
@@ -122,13 +138,13 @@ a {
 
 .hero::after {
   position: absolute;
-  right: max(0px, calc((100vw - 1200px) / 2 - 60px));
-  bottom: -110px;
-  width: 460px;
-  height: 460px;
+  left: -120px;
+  bottom: -210px;
+  width: 430px;
+  height: 430px;
   border-radius: 50%;
-  background: rgba(128, 70, 217, 0.32);
-  filter: blur(8px);
+  background: rgba(61, 117, 168, 0.42);
+  filter: blur(1px);
   content: "";
 }
 
@@ -141,8 +157,14 @@ a {
 }
 
 .hero-copy {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  right: max(24px, calc((100vw - 1200px) / 2));
+  bottom: 22px;
+  left: max(24px, calc((100vw - 1200px) / 2));
+  z-index: 4;
+  display: grid;
+  justify-items: center;
+  text-align: center;
 }
 
 .eyebrow,
@@ -171,7 +193,11 @@ h1 {
 }
 
 .hero h1 {
+  max-width: 940px;
+  margin: 0 auto;
   color: var(--white);
+  font-size: clamp(31px, 3.2vw, 48px);
+  line-height: 1.04;
   text-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
 }
 
@@ -201,6 +227,14 @@ h3 {
 
 .hero .eyebrow {
   color: rgba(255, 255, 255, 0.82);
+}
+
+.hero .eyebrow,
+.hero .hero-text,
+.hero .hero-actions,
+.hero .hero-proof,
+.hero .delivery-strip {
+  display: none;
 }
 
 .hero-actions {
@@ -327,23 +361,39 @@ h3 {
 }
 
 .hero-visual {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  min-height: 560px;
+  min-height: 0;
   overflow: visible;
   border-radius: 0;
   background: transparent;
 }
 
+.hero-visual::before {
+  position: absolute;
+  top: 164px;
+  right: max(94px, calc((100vw - 1200px) / 2 + 98px));
+  width: 315px;
+  height: 170px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(13, 40, 58, 0.72), rgba(13, 40, 58, 0.22)),
+    url("work/jeff-page-landing.jpg") center / cover;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
+  content: "";
+}
+
 .hero-device {
   position: absolute;
-  right: clamp(-150px, -8vw, -54px);
-  top: 56px;
+  top: 74px;
+  left: max(18px, calc((100vw - 1200px) / 2 - 10px));
   z-index: 2;
-  width: min(820px, 112%);
+  width: min(600px, 48vw);
   height: auto;
-  filter: drop-shadow(0 34px 48px rgba(0, 0, 0, 0.38));
-  transform: rotate(-2deg);
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.34));
+  transform: rotate(-11deg);
 }
 
 .hero-shape {
@@ -495,13 +545,14 @@ h3 {
 
 .metric-card {
   z-index: 3;
-  right: 18px;
+  top: 80px;
+  right: max(56px, calc((100vw - 1200px) / 2 + 36px));
   left: auto;
-  bottom: 76px;
-  width: 252px;
-  padding: 22px;
+  bottom: auto;
+  width: 230px;
+  padding: 18px;
   border-radius: 8px;
-  background: rgba(8, 24, 44, 0.86);
+  background: rgba(8, 30, 45, 0.72);
   backdrop-filter: blur(18px);
 }
 
@@ -516,28 +567,32 @@ h3 {
 .metric-card strong {
   display: block;
   color: var(--white);
-  font-size: 34px;
+  font-size: 28px;
   line-height: 1;
 }
 
 .flow-card {
   z-index: 3;
-  left: 8px;
-  bottom: 58px;
+  top: 182px;
+  right: max(400px, calc((100vw - 1200px) / 2 + 386px));
+  left: auto;
+  bottom: auto;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
+  gap: 8px;
+  width: 250px;
+  padding: 16px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(8, 30, 45, 0.72);
+  backdrop-filter: blur(18px);
 }
 
 .flow-card span {
-  padding: 7px 10px;
-  border-radius: 999px;
-  color: var(--deep);
-  background: #eaf7ff;
-  font-size: 12px;
+  padding: 0;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.78);
+  background: transparent;
+  font-size: 11px;
   font-weight: 900;
 }
 
@@ -994,23 +1049,43 @@ textarea {
     display: none;
   }
 
-  .hero,
-  .split,
-  .contact-section {
-    grid-template-columns: 1fr;
-  }
-
   .hero {
-    padding-top: 52px;
+    min-height: 520px;
+    padding-top: 58px;
   }
 
   .hero-visual {
-    min-height: 480px;
+    min-height: 0;
   }
 
   .hero-device {
-    right: -88px;
-    width: min(760px, 118%);
+    top: 92px;
+    left: 10px;
+    width: min(560px, 68vw);
+  }
+
+  .hero-visual::before {
+    top: 170px;
+    right: 32px;
+    width: 270px;
+    height: 150px;
+  }
+
+  .metric-card {
+    top: 78px;
+    right: 18px;
+    width: 202px;
+  }
+
+  .flow-card {
+    top: 320px;
+    right: 22px;
+    width: 230px;
+  }
+
+  .split,
+  .contact-section {
+    grid-template-columns: 1fr;
   }
 
   .service-grid,
@@ -1039,10 +1114,10 @@ textarea {
 
   .hero {
     width: 100%;
-    min-height: auto;
+    min-height: 520px;
     margin-right: 0;
     margin-left: 0;
-    padding: 46px 16px 48px;
+    padding: 58px 16px 24px;
   }
 
   .hero-actions,
@@ -1053,7 +1128,7 @@ textarea {
   .hero-visual {
     width: 100%;
     max-width: 100%;
-    min-height: 340px;
+    min-height: 0;
     border-radius: 0;
   }
 
@@ -1080,28 +1155,56 @@ textarea {
   }
 
   .hero-copy {
-    width: 340px;
-    max-width: 100%;
+    right: 16px;
+    bottom: 22px;
+    left: 16px;
+    width: auto;
+    max-width: none;
   }
 
   .hero-device {
-    top: 26px;
-    right: -72px;
-    width: 560px;
+    top: 96px;
+    left: -76px;
+    width: 390px;
     max-width: none;
-    transform: rotate(-2deg);
+    transform: rotate(-11deg);
+  }
+
+  .hero-visual::before {
+    top: 134px;
+    right: -52px;
+    width: 190px;
+    height: 118px;
   }
 
   .metric-card {
-    right: auto;
-    left: 0;
-    bottom: 20px;
-    width: 174px;
-    padding: 16px;
+    top: 62px;
+    right: 14px;
+    left: auto;
+    bottom: auto;
+    width: 164px;
+    padding: 13px;
+  }
+
+  .metric-card strong {
+    font-size: 24px;
   }
 
   .flow-card {
-    display: none;
+    top: 270px;
+    right: 16px;
+    display: flex;
+    width: 190px;
+    padding: 12px;
+  }
+
+  .flow-card span {
+    font-size: 10px;
+  }
+
+  .header-cta {
+    min-height: 30px;
+    padding: 0 14px;
   }
 
   .section {
