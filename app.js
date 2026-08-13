@@ -63,43 +63,43 @@ const contactForm = document.querySelector('[data-contact-form]');
 const formStatus = document.querySelector('[data-form-status]');
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!contactForm.reportValidity()) return;
 
     const data = new FormData(contactForm);
-    const subject = isEnglish
-      ? `TWOIN project inquiry: ${data.get('service')}`
-      : `TWOIN 網站需求：${data.get('service')}`;
-    const body = (isEnglish
-      ? [
-          `Name: ${data.get('name')}`,
-          `Contact: ${data.get('contact')}`,
-          `Service: ${data.get('service')}`,
-          '',
-          'Project details:',
-          data.get('message'),
-        ]
-      : [
-          `姓名：${data.get('name')}`,
-          `聯絡方式：${data.get('contact')}`,
-          `服務：${data.get('service')}`,
-          '',
-          '需求描述：',
-          data.get('message'),
-        ]).join('\n');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const payload = Object.fromEntries(data.entries());
+    payload.language = isEnglish ? 'en' : 'zh';
 
-    if (formStatus) {
-      formStatus.textContent = isEnglish
-        ? 'Your Gmail draft is ready. Opening Gmail now.'
-        : 'Gmail 草稿已準備完成，正在開啟 Gmail。';
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+    if (formStatus) formStatus.textContent = isEnglish ? 'Sending...' : '正在送出…';
+
+    try {
+      const response = await fetch(contactForm.dataset.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+      contactForm.reset();
+      if (formStatus) {
+        formStatus.textContent = isEnglish
+          ? 'Sent. Thank you — we will get back to you shortly.'
+          : '已送出，謝謝你的詢問，我們會盡快回覆。';
+      }
+    } catch (error) {
+      console.error(error);
+      if (formStatus) {
+        formStatus.textContent = isEnglish
+          ? 'Unable to send right now. Please email twoin.service@gmail.com.'
+          : '目前無法送出，請直接來信 twoin.service@gmail.com。';
+      }
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
     }
-    const gmailUrl = new URL('https://mail.google.com/mail/');
-    gmailUrl.searchParams.set('view', 'cm');
-    gmailUrl.searchParams.set('fs', '1');
-    gmailUrl.searchParams.set('to', 'twoin.service@gmail.com');
-    gmailUrl.searchParams.set('su', subject);
-    gmailUrl.searchParams.set('body', body);
-    window.open(gmailUrl.toString(), '_blank', 'noopener,noreferrer');
   });
 }

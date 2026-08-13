@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "twoin-contact-form",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-13",
+  "vars": {
+    "CONTACT_TO": "twoin.service@gmail.com",
+    "CONTACT_FROM": "TWOIN Website <inquiry@mail.twoinstudio.com>"
+  }
+}

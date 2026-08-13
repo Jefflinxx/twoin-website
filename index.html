@@ -16,9 +16,9 @@
     <link rel="shortcut icon" href="./assets/design/favicon.png?v=20260813" />
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/design/apple-touch-icon.png?v=20260813" />
     <link rel="preload" as="image" href="./assets/design/home-hero-background-v2.webp?v=20260813" type="image/webp" fetchpriority="high" />
-    <link rel="stylesheet" href="./styles.css?v=20260813-2" />
+    <link rel="stylesheet" href="./styles.css?v=20260813-3" />
     <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
-    <script src="./app.js?v=20260813-3" defer></script>
+    <script src="./app.js?v=20260813-4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">跳至主要內容</a>
@@ -240,7 +240,8 @@
           <a class="contact-mail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=twoin.service@gmail.com" target="_blank" rel="noopener noreferrer">twoin.service@gmail.com <span aria-hidden="true">↗</span></a>
         </div>
 
-        <form class="contact-form" data-contact-form>
+        <form class="contact-form" data-contact-form data-endpoint="https://contact.twoinstudio.com/submit">
+          <input class="form-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="field-row">
             <label for="name">姓名</label>
             <input id="name" type="text" name="name" autocomplete="name" required />
@@ -259,8 +260,8 @@
             <label for="message">需求描述</label>
             <textarea id="message" name="message" rows="5" placeholder="簡單說明目標或目前遇到的問題" required></textarea>
           </div>
-          <button type="submit">建立 Email 草稿 <span aria-hidden="true">↗</span></button>
-          <p class="form-note" data-form-status aria-live="polite">送出後會開啟 Gmail 草稿，不會在網站儲存資料。</p>
+          <button type="submit">送出 <span aria-hidden="true">↗</span></button>
+          <p class="form-note" data-form-status aria-live="polite"></p>
         </form>
 
         <footer class="site-footer">

@@ -378,6 +378,7 @@ h1, h2, h3, p, figure, blockquote { margin-top: 0; }
 .contact-copy > p:not(.section-index) { max-width: 610px; color: var(--muted); }
 .contact-mail { display: inline-flex; min-height: 48px; margin-top: 24px; align-items: center; gap: 20px; font-weight: 700; }
 .contact-form { border-top: 1px solid var(--ink); }
+.form-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; }
 .field-row { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
 .field-row label { padding-top: 12px; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; }
 .field-row input, .field-row select, .field-row textarea {
@@ -409,6 +410,7 @@ h1, h2, h3, p, figure, blockquote { margin-top: 0; }
 }
 .contact-form button:hover { color: var(--accent); border-color: var(--accent); }
 .form-note { margin-top: 14px; color: var(--muted); font-size: 12px; }
+.form-note:empty { display: none; }
 .site-footer { grid-column: 1 / -1; padding-top: 22px; display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; text-transform: uppercase; }
 .site-footer p { margin: 0; }
 
