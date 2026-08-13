@@ -91,9 +91,15 @@ if (contactForm) {
 
     if (formStatus) {
       formStatus.textContent = isEnglish
-        ? 'Your email draft is ready. Opening your email app now.'
-        : 'Email 草稿已準備完成，正在開啟你的 Email 軟體。';
+        ? 'Your Gmail draft is ready. Opening Gmail now.'
+        : 'Gmail 草稿已準備完成，正在開啟 Gmail。';
     }
-    window.location.href = `mailto:twoin.service@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const gmailUrl = new URL('https://mail.google.com/mail/');
+    gmailUrl.searchParams.set('view', 'cm');
+    gmailUrl.searchParams.set('fs', '1');
+    gmailUrl.searchParams.set('to', 'twoin.service@gmail.com');
+    gmailUrl.searchParams.set('su', subject);
+    gmailUrl.searchParams.set('body', body);
+    window.open(gmailUrl.toString(), '_blank', 'noopener,noreferrer');
   });
 }
