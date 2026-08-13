@@ -138,7 +138,7 @@ h1, h2, h3, p, figure, blockquote { margin-top: 0; }
   z-index: -1;
   width: 100vw;
   height: calc(100% + 92px);
-  background: var(--paper) url("./assets/design/home-hero-background-v2.webp") center center / cover no-repeat;
+  background: var(--paper) url("./assets/design/home-hero-background-v2.webp?v=20260813") center center / cover no-repeat;
   content: "";
   transform: translateX(-50%);
 }
