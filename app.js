@@ -94,6 +94,6 @@ if (contactForm) {
         ? 'Your email draft is ready. Opening your email app now.'
         : 'Email 草稿已準備完成，正在開啟你的 Email 軟體。';
     }
-    window.location.href = `mailto:hello@twoin.tw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:twoin.service@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }
