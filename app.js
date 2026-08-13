@@ -61,6 +61,15 @@ if (menuButton && navigation) {
 
 const contactForm = document.querySelector('[data-contact-form]');
 const formStatus = document.querySelector('[data-form-status]');
+const successDialog = document.querySelector('[data-success-dialog]');
+const dialogCloseButton = document.querySelector('[data-dialog-close]');
+
+if (successDialog && dialogCloseButton) {
+  dialogCloseButton.addEventListener('click', () => successDialog.close());
+  successDialog.addEventListener('click', (event) => {
+    if (event.target === successDialog) successDialog.close();
+  });
+}
 
 if (contactForm) {
   contactForm.addEventListener('submit', async (event) => {
@@ -90,6 +99,7 @@ if (contactForm) {
           ? 'Sent. Thank you — we will get back to you shortly.'
           : '已送出，謝謝你的詢問，我們會盡快回覆。';
       }
+      if (successDialog) successDialog.showModal();
     } catch (error) {
       console.error(error);
       if (formStatus) {
